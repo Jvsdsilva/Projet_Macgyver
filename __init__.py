@@ -33,15 +33,17 @@ def main():
 	
 	#Generate labyrinth
 	level = Walls.Level(file)
-	level.generate()
-	level.display_level(screen)
+	list_ennemy = []
 	
 	#Create player
 	player1 = Players.Player(image_player,image_player, image_player,image_player, level)
 	player2 = Players.Player(image_finish,image_finish, image_finish,image_finish, level)
-	
+	list_ennemy.append(player2)
 	#Create liste of objects
 	list_items = []
+	
+	level.generate()
+	level.display_level(screen,list_ennemy)
 	
 	#Instatiation objects
 	plastic_tube = Objects.Block(plastic_tube_object)
@@ -83,43 +85,33 @@ def main():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True
-			# We will use a mouse-click to signify when the game is over.
-			elif event.type == pygame.MOUSEBUTTONDOWN:
-				game_over = True
-			
 			# Move player with keyboard
 			if event.type == pygame.KEYDOWN:
+				
 				if event.key == pygame.K_RIGHT:
-					player1.move('right')
-					#boucle objets
-					#object.ramacer(player.x,player.y)
+					game_over = player1.move('right', list_ennemy)
+					print(game_over)
+					player1.collect_item (list_items)
 				if event.key == pygame.K_LEFT:
-					player1.move('left')
+					game_over = player1.move('left', list_ennemy)
+					player1.collect_item (list_items)
+					print(game_over)
 				if event.key == pygame.K_UP:
-					player1.move('up')
+					game_over = player1.move('up', list_ennemy)
+					player1.collect_item (list_items)
+					print(game_over)
 				if event.key == pygame.K_DOWN:
-					player1.move('down')
-					
+					game_over = player1.move('down', list_ennemy)
+					player1.collect_item (list_items)
+					print(game_over)
+				
+				print(player1.nb_item)
 				#Fill old player position with a black rectangle
 				pygame.draw.rect(screen,BLACK,player1.Rect_position_old,0)
 				
 				#Display new player image
 				screen.blit(player1.image, (player1.x, player1.y))
-     
-                # See if the player block has collided with anything.
-				# blocks_hit_list = pygame.sprite.spritecollide(player1, block_list, True)  
-     
-                # # Check the list of collisions.
-				# for block in blocks_hit_list:
-					# score += 1
-					# print( score )
- 
-                    # # Check to see if all the blocks are gone.
-                    # # If they are, level up.
-					# if len(block_list) == 3:
-						# # Add syringue and "delete" garde
-						# level += 1
-                        	
+
 		all_sprites_list.update()
 		# Draw all the spites
 		all_sprites_list.draw(screen)

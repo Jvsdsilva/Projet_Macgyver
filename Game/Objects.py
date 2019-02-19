@@ -44,11 +44,3 @@ class Block(pygame.sprite.Sprite):
 		#self.image_file = pygame.image.load(self.image_file).convert_alpha()
         
         
-#     def collect_item (self, list, x, y):
-#         wlist = []
-#         wlist = list
-#         for i in wlist:
-#             if i.x == x or i.y == y:
-#                 item += 1
-#         
-#                 return item

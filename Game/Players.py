@@ -21,17 +21,26 @@ class Player(pygame.sprite.Sprite):
 		self.Rect_position_old = pygame.Rect(self.x, self.y, player_size, player_size)
 		#Default direction
 		self.direction = self.right
-		
+		self.nb_item = 0
 		#Level game
 		self.level = level
 	
 	#Move player with keyboard
-	def move(self, direction):
-		
+	def move(self, direction, liste):
+		list_ennemy = []
+		list_ennemy = liste
+		game_over = False
+		finish = list_ennemy[0]
 		#Move to right
 		if direction == 'right':
 			#Screen limit
 			if self.case_x < (numbers_sprite_side - 1):
+				print(finish.x)
+				print(finish.y)
+				game_over = self.test_ennemy_contact(list_ennemy,self.x+sprite_size,self.y)
+				print(game_over)
+				if game_over == True:
+					return True
 				#Verication if not walls 
 				if self.level.structure[self.case_y][self.case_x+1] != 'm':
 					#Move one step
@@ -47,6 +56,11 @@ class Player(pygame.sprite.Sprite):
 		#Move to Left
 		if direction == 'left':
 			if self.case_x > 0:
+				print(finish.x)
+				print(finish.y)
+				game_over = self.test_ennemy_contact(list_ennemy,self.x-sprite_size,self.y)
+				if game_over == True:
+					return True
 				if self.level.structure[self.case_y][self.case_x-1] != 'm':
 					self.case_x -= 1
 					self.Rect_position_old.left = self.x
@@ -57,6 +71,11 @@ class Player(pygame.sprite.Sprite):
 		#Move Up
 		if direction == 'up':
 			if self.case_y > 0:
+				print(finish.x)
+				print(finish.y)
+				game_over = self.test_ennemy_contact(list_ennemy,self.x,self.y-sprite_size)
+				if game_over == True:
+					return True
 				if self.level.structure[self.case_y-1][self.case_x] != 'm':
 					self.case_y -= 1
 					self.Rect_position_old.left = self.x
@@ -67,14 +86,48 @@ class Player(pygame.sprite.Sprite):
 		#Move Down
 		if direction == 'down':
 			if self.case_y < (numbers_sprite_side - 1):
+				print(finish.x)
+				print(finish.y)
+				game_over = self.test_ennemy_contact(list_ennemy,self.x,self.y+sprite_size)
+				if game_over == True:
+					return True
 				if self.level.structure[self.case_y+1][self.case_x] != 'm':
 					self.case_y += 1
 					self.Rect_position_old.left = self.x
 					self.Rect_position_old.top = self.y
 					self.y = self.case_y * sprite_size
 			self.image = pygame.image.load(self.down).convert_alpha()
+			
+		return False
+
 		
-		print(direction)
-		print(self.Rect_position_old.left)
-		print(self.Rect_position_old.top)
+	def collect_item (self, list):
+		wlist = []
+		wlist = list
 		
+		for i in wlist:
+			if i.x == self.x and i.y == self.y:
+				self.nb_item += 1
+				i.x = -1
+				i.y = -1
+	#class method
+	def test_ennemy_contact(self, list, x, y):
+		list_ennemy = []
+		list_ennemy = list
+		finish = list_ennemy[0]
+		for i in list_ennemy:
+			print(finish.x)
+			print(finish.y)
+			print(x)
+			print(y)
+			#if list_ennemy [i].x== x and list_ennemy [i].y== y :
+			if finish.x== x and finish.y== y :
+				if self.nb_item == 3:
+					return False
+				else :
+					return True
+			else :
+				return False
+	def display(self,screen):
+		screen.blit(self.image, (self.x,self.y))
+

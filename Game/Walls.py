@@ -32,11 +32,13 @@ class Level():
 			self.structure = structure_level
 	
 	# Display level with generate structure list
-	def display_level(self, screen):
+	def display_level(self, screen, list_ennemy):
 		#Loading images (walls, start and finish)
 		wall = pygame.image.load(image_wall).convert()
 		player = pygame.image.load(image_player).convert_alpha()
-		finish = pygame.image.load(image_finish).convert_alpha()
+		#finish = pygame.image.load(image_finish).convert_alpha()
+		
+		#finish = pygame.image.load(image_finish).convert_alpha()
 		
 		#Read level list
 		num_line = 0
@@ -52,7 +54,10 @@ class Level():
 				elif sprite == 'd':		   #d = start
 					screen.blit(player, (x,y))
 				elif sprite == 'a':		   #a = finish
-					screen.blit(finish, (x,y))
+					
+					list_ennemy[0].x = x
+					list_ennemy[0].y = y
+					list_ennemy[0].display(screen)
 					
 				num_case += 1
 			num_line += 1
