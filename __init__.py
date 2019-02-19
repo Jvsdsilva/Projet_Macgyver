@@ -4,7 +4,6 @@ import pygame
 import random
 from Game import Objects
 from Game import Players
-from Game import Rooms
 from Game import Walls
 from constantes import *
 
@@ -31,14 +30,6 @@ def main():
  
 	# This is a list of every sprite. All blocks and the player block as well.
 	all_sprites_list = pygame.sprite.Group()
-
-	# This represents a block
-	block = Objects.Block(screen_side, screen_side)
-	random.shuffle(image_list)
-	list = block.display_list()
-	#all_sprites_list.append(list)
-	
-	print(block.display_list())
 	
 	#Generate labyrinth
 	level = Walls.Level(file)
@@ -48,12 +39,46 @@ def main():
 	#Create player
 	player1 = Players.Player(image_player,image_player, image_player,image_player, level)
 	player2 = Players.Player(image_finish,image_finish, image_finish,image_finish, level)
+	
+	#Create liste of objects
+	list_items = []
+	
+	#Instatiation objects
+	plastic_tube = Objects.Block(plastic_tube_object)
+	ether = Objects.Block(ether_object)
+	needle = Objects.Block(needle_object)
+	# Add objects to list
+	list_items.append(needle)
+	list_items.append(ether)
+	list_items.append(plastic_tube)
 
+	# Set de position of objects
+	needle.set_item(player1,list_items,level)
+	ether.set_item(player1,list_items,level)
+	plastic_tube.set_item(player1,list_items,level)
+
+	# Set image object
+	needle.image = pygame.image.load(needle_object)
+	ether.image = pygame.image.load(ether_object)
+	plastic_tube.image = pygame.image.load(plastic_tube_object)
+	
+	# Display objects
+	screen.blit(needle.image, (needle.x, needle.y))
+	screen.blit(ether.image, (ether.x, ether.y))
+	screen.blit(plastic_tube.image, (plastic_tube.x, plastic_tube.y))
+	
+	pygame.draw.rect(screen,BLACK,player1.Rect_position_old,0)
+	
+	#Display new player image
+	screen.blit(player1.image, (player1.x, player1.y))
+	
+	
 	clock = pygame.time.Clock()
 
 	done = False
 
 	while not done:
+		
 		# --- Event Processing ---
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -66,6 +91,8 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_RIGHT:
 					player1.move('right')
+					#boucle objets
+					#object.ramacer(player.x,player.y)
 				if event.key == pygame.K_LEFT:
 					player1.move('left')
 				if event.key == pygame.K_UP:
@@ -80,20 +107,20 @@ def main():
 				screen.blit(player1.image, (player1.x, player1.y))
      
                 # See if the player block has collided with anything.
-                blocks_hit_list = pygame.sprite.spritecollide(player1, block_list, True)  
+				# blocks_hit_list = pygame.sprite.spritecollide(player1, block_list, True)  
      
-                # Check the list of collisions.
-                for block in blocks_hit_list:
-                    score += 1
-                    print( score )
+                # # Check the list of collisions.
+				# for block in blocks_hit_list:
+					# score += 1
+					# print( score )
  
-                    # Check to see if all the blocks are gone.
-                    # If they are, level up.
-                    if len(block_list) == 3:
-                        # Add syringue and "delete" garde
-                        level += 1
+                    # # Check to see if all the blocks are gone.
+                    # # If they are, level up.
+					# if len(block_list) == 3:
+						# # Add syringue and "delete" garde
+						# level += 1
                         	
-		#all_sprites_list.update()			  
+		all_sprites_list.update()
 		# Draw all the spites
 		all_sprites_list.draw(screen)
 		

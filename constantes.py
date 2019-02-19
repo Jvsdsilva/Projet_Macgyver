@@ -10,11 +10,11 @@ screen_side = numbers_sprite_side * sprite_size
 screen_titre = "Save MacGyver"
 
 # Images List
-images_root = "C:\\Users\\Utilisateur\\Projets_OpenClassrooms\\Projet3-master\\Images\\"
+images_root = "C:\\Users\\joana.sousadasilva\\Documents\\Projet_Macgyver-master\\Images\\"
 
 image_player = images_root + "MacGyver1.png"
 image_accueil = images_root + "tile-crusader-logo.png"
-image_wall = images_root + "walls.png"
+image_wall = images_root + "walls2.png"
 image_start = images_root + "depart.png"
 image_finish = images_root + "Gardien1.png"
 

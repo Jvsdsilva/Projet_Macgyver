@@ -3,14 +3,14 @@
 import pygame
 from pygame.locals import * 
 from constantes import *
-
+import random
 #Levels of the game
 class Level():
 	
 	def __init__(self, file):
 		self.file = file
 		self.structure = 0
-
+	
 	# Method to generate maze depending on extern file 
 	# Create a list of a line list 
 	def generate(self):
@@ -37,7 +37,6 @@ class Level():
 		wall = pygame.image.load(image_wall).convert()
 		player = pygame.image.load(image_player).convert_alpha()
 		finish = pygame.image.load(image_finish).convert_alpha()
-		color_list = [needle_object, plastic_tube_object, ether_object]
 		
 		#Read level list
 		num_line = 0
@@ -57,4 +56,3 @@ class Level():
 					
 				num_case += 1
 			num_line += 1
-			
