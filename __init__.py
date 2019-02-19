@@ -23,7 +23,7 @@ def main():
 	game_over = False
 	
 	#Set file
-	file = 'Niveau'
+	file = 'Niveau2'
 	 # This is a list of 'sprites.' Each block in the program is
 	# added to this list. The list is managed by a class called 'Group.'
 	block_list = pygame.sprite.Group()

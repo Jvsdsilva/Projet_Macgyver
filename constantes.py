@@ -10,7 +10,7 @@ screen_side = numbers_sprite_side * sprite_size
 screen_titre = "Save MacGyver"
 
 # Images List
-images_root = "C:\\Users\\joana.sousadasilva\\Documents\\Projet_Macgyver-master\\Images\\"
+images_root = "C:\\Users\\Joana.JOTA\\OpenClassrooms\\Projet_Macgyver-master\\Images\\"
 
 image_player = images_root + "MacGyver1.png"
 image_accueil = images_root + "tile-crusader-logo.png"
