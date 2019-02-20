@@ -2,9 +2,9 @@
 # -*- coding: Utf-8 -*
 import pygame
 import random
-from Game import Objects
-from Game import Players
-from Game import Walls
+from Classes import Object
+from Classes import Player
+from Classes import Level
 from constantes import *
 
 #Main program
@@ -24,20 +24,17 @@ def main():
 	
 	#Set file
 	file = 'Niveau2'
-	 # This is a list of 'sprites.' Each block in the program is
-	# added to this list. The list is managed by a class called 'Group.'
-	block_list = pygame.sprite.Group()
  
 	# This is a list of every sprite. All blocks and the player block as well.
 	all_sprites_list = pygame.sprite.Group()
 	
 	#Generate labyrinth
-	level = Walls.Level(file)
+	level = Level.Level(file)
 	list_ennemy = []
 	
 	#Create player
-	player1 = Players.Player(image_player,image_player, image_player,image_player, level)
-	player2 = Players.Player(image_finish,image_finish, image_finish,image_finish, level)
+	player1 = Player.Player(image_player,image_player, image_player,image_player, level)
+	player2 = Player.Player(image_finish,image_finish, image_finish,image_finish, level)
 	list_ennemy.append(player2)
 	#Create liste of objects
 	list_items = []
@@ -46,9 +43,10 @@ def main():
 	level.display_level(screen,list_ennemy)
 	
 	#Instatiation objects
-	plastic_tube = Objects.Block(plastic_tube_object)
-	ether = Objects.Block(ether_object)
-	needle = Objects.Block(needle_object)
+	plastic_tube = Object.Object(plastic_tube_object,13*sprite_size,0)
+	ether = Object.Object(ether_object,12*sprite_size,0)
+	needle = Object.Object(needle_object,11*sprite_size,0)
+	syringe = Object.Object(syringe_object,14*sprite_size,0)
 	# Add objects to list
 	list_items.append(needle)
 	list_items.append(ether)
@@ -89,20 +87,20 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				
 				if event.key == pygame.K_RIGHT:
-					game_over = player1.move('right', list_ennemy)
+					game_over = player1.move('right', list_ennemy, screen)
 					print(game_over)
-					player1.collect_item (list_items)
+					player1.collect_item (list_items, syringe, screen)
 				if event.key == pygame.K_LEFT:
-					game_over = player1.move('left', list_ennemy)
-					player1.collect_item (list_items)
+					game_over = player1.move('left', list_ennemy, screen)
+					player1.collect_item (list_items, syringe, screen)
 					print(game_over)
 				if event.key == pygame.K_UP:
-					game_over = player1.move('up', list_ennemy)
-					player1.collect_item (list_items)
+					game_over = player1.move('up', list_ennemy, screen)
+					player1.collect_item (list_items, syringe, screen)
 					print(game_over)
 				if event.key == pygame.K_DOWN:
-					game_over = player1.move('down', list_ennemy)
-					player1.collect_item (list_items)
+					game_over = player1.move('down', list_ennemy, screen)
+					player1.collect_item (list_items, syringe, screen)
 					print(game_over)
 				
 				print(player1.nb_item)
