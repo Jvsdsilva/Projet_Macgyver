@@ -22,8 +22,8 @@ image_finish = images_root + "Gardien.png"
 needle_object = images_root + "aiguille.png"
 plastic_tube_object = images_root + "tube_plastique.png"
 ether_object = images_root + "ether.png"
-syringe_object =images_root + "seringue1.png"
-dead_player = images_root + "dead_player.png"
+syringe_object =images_root + "seringue.png"
+dead_player = images_root + "dead_player2.png"
 
 # Colors
 BLACK = (0, 0, 0)
