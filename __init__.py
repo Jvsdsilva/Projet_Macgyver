@@ -115,11 +115,6 @@ def main():
         
         pygame.display.flip()
         
-        #GAME OVER
-        if game_over:
-            # If game over is true, draw game over
-            
-
         clock.tick(60)
 
     pygame.quit()
