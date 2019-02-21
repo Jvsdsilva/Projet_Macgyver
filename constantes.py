@@ -10,7 +10,7 @@ screen_side = numbers_sprite_side * sprite_size
 screen_titre = "Save MacGyver"
 
 # Images List
-images_root = "C:\\Users\\joana.sousadasilva\\Documents\\Projet_Macgyver-master\\Images\\"
+images_root = "C:\\Users\\Joana.JOTA\\OpenClassrooms\\Projet_Macgyver\\Images\\"
 
 image_player = images_root + "MacGyver1.png"
 image_accueil = images_root + "tile-crusader-logo.png"
@@ -22,6 +22,7 @@ needle_object = images_root + "aiguille1.png"
 plastic_tube_object = images_root + "tube_plastique1.png"
 ether_object = images_root + "ether1.png"
 syringe_object =images_root + "seringue1.png"
+dead_player = images_root + "dead_player.png"
 
 # Colors
 BLACK = (0, 0, 0)
