@@ -115,6 +115,7 @@ class Player(pygame.sprite.Sprite):
         list_ennemy = list
         finish = list_ennemy[0]
         Rect_position_ennemy = pygame.Rect(x, y, player_size, player_size)
+        
         dead_p = pygame.image.load(dead_player).convert()
         # This is a font we use to draw text on the screen (size 36)
         font = pygame.font.Font(None, 36)
@@ -134,16 +135,21 @@ class Player(pygame.sprite.Sprite):
                     screen.blit(text, [text_x, text_y])
                     return False
                 else :
-                    #draw an image 
+                    #draw an image
+                    Rect_position_player = pygame.Rect(self.x, self.y, player_size, player_size)
+                    pygame.draw.rect(screen,BLACK,Rect_position_player,0)
+                    print(Rect_position_player)
                     screen.blit(dead_p,(self.x, self.y))
+                    self.x = 0
+                    self.y = 0
+                    text = font.render("Game Over", True, WHITE)
+                    text_rect = text.get_rect()
+                    text_x = screen.get_width() / 2 - text_rect.width / 2
+                    text_y = screen.get_height() / 2 - text_rect.height / 2
+                    screen.blit(text, [text_x, text_y])
                     return True
-            else :
-                text = font.render("Game Over", True, WHITE)
-                text_rect = text.get_rect()
-                text_x = screen.get_width() / 2 - text_rect.width / 2
-                text_y = screen.get_height() / 2 - text_rect.height / 2
-                screen.blit(text, [text_x, text_y])
-                return False
+
+            return False
 
     #Display ennemy
     def display(self,screen):
