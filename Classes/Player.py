@@ -136,9 +136,7 @@ class Player(pygame.sprite.Sprite):
                     return False
                 else :
                     #draw an image
-                    Rect_position_player = pygame.Rect(self.x, self.y,
-                                                       player_size,
-                                                       player_size)
+                    Rect_position_player = pygame.Rect(self.x, self.y, player_size, player_size)
                     pygame.draw.rect(screen,BLACK,Rect_position_player,0)
                     screen.blit(dead_p,(self.x, self.y))
                     self.x = 0

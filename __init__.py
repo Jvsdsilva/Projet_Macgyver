@@ -26,10 +26,9 @@ def main():
     list_ennemy = []
     
     #Create player
-    player1 = Player.Player(image_player,image_player, image_player,
-                            image_player, level)
-    player2 = Player.Player(image_finish,image_finish, image_finish,
-                            image_finish, level)
+    player1 = Player.Player(image_player,image_player, image_player, image_player, level)
+    player2 = Player.Player(image_finish,image_finish, image_finish, image_finish, level)
+
     list_ennemy.append(player2)
     #Create liste of objects
     list_items = []

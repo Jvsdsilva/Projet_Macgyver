@@ -3,7 +3,7 @@ import random
 from constantes import *
 
 
-    #This class represents the objects that player have to collect.
+#This class represents the objects that player have to collect.
 class Object(pygame.sprite.Sprite):
 
     # Constructor.
