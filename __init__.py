@@ -20,9 +20,6 @@ def main():
     
     #Set file
     file = 'Niveau2'
- 
-    # This is a list of every sprite. All blocks and the player block as well.
-    #all_sprites_list = pygame.sprite.Group()
     
     #Generate labyrinth
     level = Level.Level(file)
@@ -101,10 +98,6 @@ def main():
                 
                 #Display new player image
                 screen.blit(player1.image, (player1.x, player1.y))
-
-        #all_sprites_list.update()
-        # Draw all the spites
-        #all_sprites_list.draw(screen)
         
         pygame.display.flip()
         
