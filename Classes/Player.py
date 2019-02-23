@@ -18,7 +18,8 @@ class Player(pygame.sprite.Sprite):
         self.case_y = 0
         self.x = 0
         self.y = 0
-        self.Rect_position_old = pygame.Rect(self.x, self.y, player_size, player_size)
+        self.Rect_position_old = pygame.Rect(self.x, self.y, player_size,
+                                             player_size)
         #Default direction
         self.direction = self.right
         self.nb_item = 0
@@ -36,7 +37,9 @@ class Player(pygame.sprite.Sprite):
         if direction == 'right':
             #Screen limit
             if self.case_x < (numbers_sprite_side - 1):
-                game_over = self.test_ennemy_contact(list_ennemy,self.x+sprite_size,self.y, screen)
+                game_over = self.contact_test_ennemy(list_ennemy,self.x
+                                                     + sprite_size,self.y,
+                                                     screen)
                 if game_over == True:
                     return True
                 #Verification if not walls 
@@ -53,7 +56,9 @@ class Player(pygame.sprite.Sprite):
         #Move to Left
         if direction == 'left':
             if self.case_x > 0:
-                game_over = self.test_ennemy_contact(list_ennemy,self.x-sprite_size,self.y, screen)
+                game_over = self.contact_test_ennemy(list_ennemy,self.x
+                                                     - sprite_size,self.y,
+                                                     screen)
                 if game_over == True:
                     return True
                 if self.level.structure[self.case_y][self.case_x-1] != 'm':
@@ -65,7 +70,8 @@ class Player(pygame.sprite.Sprite):
         #Move Up
         if direction == 'up':
             if self.case_y > 0:
-                game_over = self.test_ennemy_contact(list_ennemy,self.x,self.y-sprite_size, screen)
+                game_over = self.contact_test_ennemy(list_ennemy,self.x,self.y
+                                                     - sprite_size, screen)
                 if game_over == True:
                     return True
                 if self.level.structure[self.case_y-1][self.case_x] != 'm':
@@ -77,7 +83,8 @@ class Player(pygame.sprite.Sprite):
         #Move Down
         if direction == 'down':
             if self.case_y < (numbers_sprite_side - 1):
-                game_over = self.test_ennemy_contact(list_ennemy,self.x,self.y+sprite_size, screen)
+                game_over = self.contact_test_ennemy(list_ennemy,self.x,self.y
+                                                     + prite_size, screen)
                 if game_over == True:
                     return True
                 if self.level.structure[self.case_y+1][self.case_x] != 'm':
@@ -105,12 +112,13 @@ class Player(pygame.sprite.Sprite):
                     screen.blit(wall, (11*sprite_size,0))
                     screen.blit(wall, (12*sprite_size,0))
                     screen.blit(wall, (13*sprite_size,0))
-                    screen.blit(syringe.image, (syringe.x_display, syringe.y_display))
+                    screen.blit(syringe.image, (syringe.x_display,
+                                                syringe.y_display))
                 else:
                     screen.blit(item.image, (item.x_display, item.y_display))
 
     #class method
-    def test_ennemy_contact(self, list, x, y, screen):
+    def contact_test_ennemy(self, list, x, y, screen):
         list_ennemy = []
         list_ennemy = list
         finish = list_ennemy[0]
@@ -136,9 +144,10 @@ class Player(pygame.sprite.Sprite):
                     return False
                 else :
                     #draw an image
-                    Rect_position_player = pygame.Rect(self.x, self.y, player_size, player_size)
+                    Rect_position_player = pygame.Rect(self.x, self.y,
+                                                       player_size,
+                                                       player_size)
                     pygame.draw.rect(screen,BLACK,Rect_position_player,0)
-                    print(Rect_position_player)
                     screen.blit(dead_p,(self.x, self.y))
                     self.x = 0
                     self.y = 0

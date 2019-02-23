@@ -19,7 +19,8 @@ class Object(pygame.sprite.Sprite):
         #coordinates to display object in wall
         self.x_display = x_display
         self.y_display = y_display
-        # Update the position of this object by setting the values of rect.x and rect.y
+        # Update the position of this object by setting the values of rect.x 
+        # and rect.y
         self.rect = self.image.get_rect()
 
     #Set of random objects
@@ -31,7 +32,10 @@ class Object(pygame.sprite.Sprite):
         y = random.randrange(1,15)
         #Obstacles verification to random objects
         for object in wlist:
-            while  object.x == x or object.y == y or level.structure[y][x] == 'm' or level.structure[y][x] == 'a' or level.structure[y][x] == 'd':
+            while  object.x == x or object.y == y 
+                   or level.structure[y][x] == 'm' 
+                   or level.structure[y][x] == 'a' 
+                   or level.structure[y][x] == 'd':
                 #random in screen
                 x = random.randrange(1,15)
                 y = random.randrange(1,15)

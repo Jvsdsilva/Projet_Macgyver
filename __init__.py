@@ -17,23 +17,22 @@ def main():
     screen = pygame.display.set_mode((screen_side, screen_side))
     # Set the title of the window
     pygame.display.set_caption(screen_titre)
-
-    # Use this boolean variable to trigger if the game is over.
-    game_over = False
     
     #Set file
     file = 'Niveau2'
  
     # This is a list of every sprite. All blocks and the player block as well.
-    all_sprites_list = pygame.sprite.Group()
+    #all_sprites_list = pygame.sprite.Group()
     
     #Generate labyrinth
     level = Level.Level(file)
     list_ennemy = []
     
     #Create player
-    player1 = Player.Player(image_player,image_player, image_player,image_player, level)
-    player2 = Player.Player(image_finish,image_finish, image_finish,image_finish, level)
+    player1 = Player.Player(image_player,image_player, image_player,
+                            image_player, level)
+    player2 = Player.Player(image_finish,image_finish, image_finish,
+                            image_finish, level)
     list_ennemy.append(player2)
     #Create liste of objects
     list_items = []
@@ -71,7 +70,6 @@ def main():
     #Display new player image
     screen.blit(player1.image, (player1.x, player1.y))
     
-    
     clock = pygame.time.Clock()
 
     done = False
@@ -87,31 +85,26 @@ def main():
                 
                 if event.key == pygame.K_RIGHT:
                     game_over = player1.move('right', list_ennemy, screen)
-                    print(game_over)
                     player1.collect_item (list_items, syringe, screen)
                 if event.key == pygame.K_LEFT:
                     game_over = player1.move('left', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
-                    print(game_over)
                 if event.key == pygame.K_UP:
                     game_over = player1.move('up', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
-                    print(game_over)
                 if event.key == pygame.K_DOWN:
                     game_over = player1.move('down', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
-                    print(game_over)
-                
-                print(player1.nb_item)
+
                 #Fill old player position with a black rectangle
                 pygame.draw.rect(screen,BLACK,player1.Rect_position_old,0)
                 
                 #Display new player image
                 screen.blit(player1.image, (player1.x, player1.y))
 
-        all_sprites_list.update()
+        #all_sprites_list.update()
         # Draw all the spites
-        all_sprites_list.draw(screen)
+        #all_sprites_list.draw(screen)
         
         pygame.display.flip()
         
