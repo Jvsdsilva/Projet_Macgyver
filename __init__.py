@@ -15,6 +15,7 @@ def main():
     pygame.init()
     # Create the surface of (width, height), and its window.
     screen = pygame.display.set_mode((screen_side, screen_side))
+    
     # Set the title of the window
     pygame.display.set_caption(screen_titre)
     
@@ -78,18 +79,17 @@ def main():
                 done = True
             # Move player with keyboard
             if event.type == pygame.KEYDOWN:
-                
                 if event.key == pygame.K_RIGHT:
-                    game_over = player1.move('right', list_ennemy, screen)
+                    game_over = player1.move_right('right', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
                 if event.key == pygame.K_LEFT:
-                    game_over = player1.move('left', list_ennemy, screen)
+                    game_over = player1.move_left('left', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
                 if event.key == pygame.K_UP:
-                    game_over = player1.move('up', list_ennemy, screen)
+                    game_over = player1.move_up('up', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
                 if event.key == pygame.K_DOWN:
-                    game_over = player1.move('down', list_ennemy, screen)
+                    game_over = player1.move_down('down', list_ennemy, screen)
                     player1.collect_item (list_items, syringe, screen)
 
                 #Fill old player position with a black rectangle

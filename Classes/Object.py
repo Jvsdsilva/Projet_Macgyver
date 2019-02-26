@@ -24,10 +24,8 @@ class Object(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     #Set of random objects
-    def set_item(self, player, list, level):
+    def set_item(self, player, wlist, level):
         self.player = (0,0)
-        wlist = []
-        wlist = list
         x = random.randrange(1,15)
         y = random.randrange(1,15)
         #Obstacles verification to random objects

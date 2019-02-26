@@ -25,14 +25,12 @@ class Player(pygame.sprite.Sprite):
         #Level game
         self.level = level
 
-
     #Move player with keyboard
-    def move(self, direction, liste, screen):
-        list_ennemy = []
-        list_ennemy = liste
+    #Move to right
+    def move_right(self, direction, list_ennemy, screen):
         game_over = False
         finish = list_ennemy[0]
-        #Move to right
+        
         if direction == 'right':
             #Screen limit
             if self.case_x < (numbers_sprite_side - 1):
@@ -50,7 +48,12 @@ class Player(pygame.sprite.Sprite):
                     self.x = self.case_x * sprite_size
             #Image of the player
             self.image = pygame.image.load(self.right).convert_alpha()
-        #Move to Left
+
+    #Move to Left
+    def move_left(self, direction, list_ennemy, screen):
+        game_over = False
+        finish = list_ennemy[0]
+        
         if direction == 'left':
             if self.case_x > 0:
                 game_over = self.contact_test_ennemy(list_ennemy,self.x-sprite_size,self.y, screen)
@@ -62,7 +65,12 @@ class Player(pygame.sprite.Sprite):
                     self.Rect_position_old.top = self.y
                     self.x = self.case_x * sprite_size
             self.image = pygame.image.load(self.left).convert_alpha()
-        #Move Up
+
+    #Move Up
+    def move_up(self, direction, list_ennemy, screen):
+        game_over = False
+        finish = list_ennemy[0]
+        
         if direction == 'up':
             if self.case_y > 0:
                 game_over = self.contact_test_ennemy(list_ennemy,self.x,self.y-sprite_size, screen)
@@ -74,7 +82,12 @@ class Player(pygame.sprite.Sprite):
                     self.Rect_position_old.top = self.y
                     self.y = self.case_y * sprite_size
             self.image = pygame.image.load(self.up).convert_alpha()
-        #Move Down
+
+    #Move Down
+    def move_down(self, direction, list_ennemy, screen):
+        game_over = False
+        finish = list_ennemy[0]
+        
         if direction == 'down':
             if self.case_y < (numbers_sprite_side - 1):
                 game_over = self.contact_test_ennemy(list_ennemy,self.x,self.y+sprite_size, screen)
@@ -88,11 +101,8 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load(self.down).convert_alpha()
         return False
 
-
-# Collect items in the labyrinth by step up
-    def collect_item (self, list, syringe, screen):
-        wlist = []
-        wlist = list
+    # Collect items in the labyrinth by step up
+    def collect_item (self, wlist, syringe, screen):
         wall = pygame.image.load(image_wall).convert()
         
         for item in wlist:
@@ -109,16 +119,12 @@ class Player(pygame.sprite.Sprite):
                 else:
                     screen.blit(item.image, (item.x_display, item.y_display))
 
-    #class method
-    def contact_test_ennemy(self, list, x, y, screen):
-        list_ennemy = []
-        list_ennemy = list
+    #Test enemmy contact with or without all objects
+    def contact_test_ennemy(self, list_ennemy, x, y, screen):
         finish = list_ennemy[0]
         Rect_position_ennemy = pygame.Rect(x, y, player_size, player_size)
-        
         dead_p = pygame.image.load(dead_player).convert()
-        # This is a font we use to draw text on the screen (size 36)
-        font = pygame.font.Font(None, 48)
+        
         #Read list of ennemy
         for ennemy in list_ennemy:
             if finish.x== x and finish.y== y :
@@ -128,11 +134,7 @@ class Player(pygame.sprite.Sprite):
                     #Draw a black rectangle in the old position of the player
                     pygame.draw.rect(screen,BLACK,Rect_position_ennemy,0)
                     #End of the game with all objects
-                    text = font.render("YOU WIN", True, WHITE)
-                    text_rect = text.get_rect()
-                    text_x = screen.get_width() / 2 - text_rect.width / 2
-                    text_y = screen.get_height() / 2 - text_rect.height / 2
-                    screen.blit(text, [text_x, text_y])
+                    self.game_over("You Win", screen)
                     return False
                 else :
                     #draw an image
@@ -141,14 +143,22 @@ class Player(pygame.sprite.Sprite):
                     screen.blit(dead_p,(self.x, self.y))
                     self.x = 0
                     self.y = 0
-                    text = font.render("Game Over", True, WHITE)
-                    text_rect = text.get_rect()
-                    text_x = screen.get_width() / 2 - text_rect.width / 2
-                    text_y = screen.get_height() / 2 - text_rect.height / 2
-                    screen.blit(text, [text_x, text_y])
+                    #End of the game without all objects
+                    self.game_over("Game Over", screen)
                     return True
-
             return False
+
+    #Display message game over
+    def game_over(self, str_message, screen):
+        # This is a font we use to draw text on the screen (size 48)
+        font = pygame.font.Font(None, 48)
+        # font rendering in white
+        text = font.render(str_message, True, WHITE)
+        text_rect = text.get_rect()
+        #Display message in the center of the screen
+        text_x = screen.get_width() / 2 - text_rect.width / 2
+        text_y = screen.get_height() / 2 - text_rect.height / 2
+        screen.blit(text, [text_x, text_y])
 
     #Display ennemy
     def display(self,screen):
