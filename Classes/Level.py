@@ -55,6 +55,6 @@ class Level():
                     # Ennemy position in finish line
                     list_ennemy[0].x = x
                     list_ennemy[0].y = y
-                    list_ennemy[0].display(screen)
+                    #list_ennemy[0].display(screen)
                 num_case += 1
             num_line += 1

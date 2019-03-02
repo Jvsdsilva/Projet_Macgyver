@@ -2,6 +2,7 @@
 
 import pygame
 from constantes import *
+from Classes import Display
 
 # this class represents the palyer of the game
 class Player(pygame.sprite.Sprite):
