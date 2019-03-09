@@ -16,7 +16,7 @@ class Display(pygame.sprite.Sprite):
         self.image_display = pygame.image.load(image_player)
         self.screen = pygame.display.set_mode((screen_side, screen_side))
         # Set file
-        file = 'Niveau2'
+        file = 'Labyrinth'
         # Instatiation labyrinth
         self.level = Level.Level(file)
         # Create listes
@@ -69,10 +69,6 @@ class Display(pygame.sprite.Sprite):
     # load images
     def load_image(self, image):
         return pygame.image.load(image)
-    
-    # pygame rect
-    def pygame_rect(self, x, y, player_size):
-        return pygame.Rect(x, y, player_size, player_size)
 
     # display images
     def blit_image(self, surface, rect):
@@ -134,28 +130,13 @@ class Display(pygame.sprite.Sprite):
             # Move player with keyboard
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    game_over = self.player1.move_right('right',
-                                                        self.list_ennemy,
-                                                        self.screen)
-                    self.player1.collect_item(self.list_items, self.syringe,
-                                              self.screen)
+                    self.k_right()
                 if event.key == pygame.K_LEFT:
-                    game_over = self.player1.move_left('left',
-                                                       self.list_ennemy,
-                                                       self.screen)
-                    self.player1.collect_item(self.list_items, self.syringe,
-                                              self.screen)
+                    self.k_left()
                 if event.key == pygame.K_UP:
-                    game_over = self.player1.move_up('up', self.list_ennemy,
-                                                     self.screen)
-                    self.player1.collect_item(self.list_items, self.syringe,
-                                              self.screen)
+                    self.k_up()
                 if event.key == pygame.K_DOWN:
-                    game_over = self.player1.move_down('down',
-                                                       self.list_ennemy,
-                                                       self.screen)
-                    self.player1.collect_item(self.list_items, self.syringe,
-                                              self.screen)
+                    self.k_down()
 
                 # Fill old player position with a black rectangle
                 self.draw_pygame_rect(BLACK, (self.player1.Rect_position_old))
@@ -164,3 +145,31 @@ class Display(pygame.sprite.Sprite):
                 self.blit_image(self.player1.image,
                                 (self.player1.x, self.player1.y))
         return done
+
+    # Move down test
+    def k_down(self):
+            game_over = self.player1.move_down('down', self.list_ennemy,
+                                               self.screen)
+            self.player1.collect_item(self.list_items, self.syringe,
+                                      self.screen)
+
+    # Move up test
+    def k_up(self):
+            game_over = self.player1.move_up('up', self.list_ennemy,
+                                             self.screen)
+            self.player1.collect_item(self.list_items, self.syringe,
+                                      self.screen)
+
+    # Move left test
+    def k_left(self):
+            game_over = self.player1.move_left('left', self.list_ennemy,
+                                               self.screen)
+            self.player1.collect_item(self.list_items, self.syringe,
+                                      self.screen)
+
+    # Move right test
+    def k_right(self):
+            game_over = self.player1.move_right('right', self.list_ennemy,
+                                                self.screen)
+            self.player1.collect_item(self.list_items, self.syringe,
+                                      self.screen)

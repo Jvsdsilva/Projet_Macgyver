@@ -29,9 +29,10 @@ class Object(pygame.sprite.Sprite):
         y = random.randrange(1, 15)
         # Obstacles verification to random objects
         for object in wlist:
-            while object.x == x or object.y == y or level.structure[y][x] == 'm' \
-				or level.structure[y][x] == 'a'or level.structure[y][x] == 'd':
-			# self.while_condition(object, level, x, y):
+            while object.x == x or object.y == y \
+                or level.structure[y][x] == 'm' \
+                or level.structure[y][x] == 'a' \
+                or level.structure[y][x] == 'd':
 
                 # random in screen
                 x = random.randrange(1, 15)
@@ -40,17 +41,3 @@ class Object(pygame.sprite.Sprite):
         self.x = x*sprite_size
         self.y = y*sprite_size
 
-
-    def while_condition(self, object, level, x, y):
-        condition_ok = False
-        if object.x == x:
-            return True
-        if object.y == y:
-            return True
-        if level.structure[y][x] == 'm':
-            return True
-        if level.structure[y][x] == 'a':
-            return True
-        if level.structure[y][x] == 'd':
-            return True
-        return condition_ok

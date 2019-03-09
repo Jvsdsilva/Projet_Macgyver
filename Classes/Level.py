@@ -1,11 +1,12 @@
 # Class draw Labyrinth
 
 import pygame
+from pygame.locals import *
 from constantes import *
+import random
+
 
 # This class represents the level of the game
-
-
 class Level():
     # constructor
     def __init__(self, file):
