@@ -52,7 +52,7 @@ class Display(pygame.sprite.Sprite):
         # Create the surface of (width, height), and its window.
         self.screen = pygame.display.set_mode((SCREEN_SIDE, SCREEN_SIDE))
         # Set the title of the window
-        pygame.display.set_caption(SCREEN_TITRE)
+        pygame.display.set_caption(SCREEN_TITLE)
 
     # quit pygame
     def quit_pygame(self):
