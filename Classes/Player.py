@@ -114,7 +114,7 @@ class Player(pygame.sprite.Sprite):
 
     # Collect items in the labyrinth by step up
     def collect_item(self, wlist, syringe, screen):
-        wall = pygame.image.load(image_wall).convert()
+        wall = pygame.image.load(IMAGE_WALL).convert()
 
         for item in wlist:
             if item.x == self.x and item.y == self.y:
@@ -134,8 +134,8 @@ class Player(pygame.sprite.Sprite):
     # Test enemmy contact with or without all objects
     def contact_test_ennemy(self, list_ennemy, x, y, screen):
         finish = list_ennemy[0]
-        Rect_position_ennemy = pygame.Rect(x, y, player_size, player_size)
-        dead_p = pygame.image.load(dead_player).convert()
+        Rect_position_ennemy = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
+        dead_p = pygame.image.load(DEAD_PLAYER).convert()
 
         # Read list of ennemy
         for ennemy in list_ennemy:
@@ -151,8 +151,8 @@ class Player(pygame.sprite.Sprite):
                 else:
                     # draw an image
                     Rect_position_player = pygame.Rect(self.x, self.y,
-                                                       player_size,
-                                                       player_size)
+                                                       PLAYER_SIZE,
+                                                       PLAYER_SIZE)
                     pygame.draw.rect(screen, BLACK, Rect_position_player, 0)
                     screen.blit(dead_p, (self.x, self.y))
                     self.x = 0

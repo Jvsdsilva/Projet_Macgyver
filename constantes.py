@@ -2,30 +2,30 @@
 import os
 
 # Screen settings
-numbers_sprite_side = 15
-sprite_size = 50
-player_size = 50
-screen_side = numbers_sprite_side * sprite_size
+NUMBERS_SPRITE_SIDE = 15
+SPRITE_SIZE = 50
+PLAYER_SIZE = 50
+SCREEN_SIDE = NUMBERS_SPRITE_SIDE * SPRITE_SIZE
 
 # Title
-screen_titre = "Save MacGyver"
+SCREEN_TITLE = "Save MacGyver"
 
 # Images List
-path = "Images/"
+PATH = "Images/"
 
-# On peut utiliser toutes les methodes
-os.path.dirname(path)
+# Use of all methodes of OS
+os.path.dirname(PATH)
 
-image_player = path + "MacGyver.png"
-image_wall = path + "brick.png"
-image_start = path + "depart.png"
-image_finish = path + "Gardien.png"
+IMAGE_PLAYER = PATH + "MacGyver.png"
+IMAGE_WALL = PATH + "brick.png"
+IMAGE_START = PATH + "depart.png"
+IMAGE_FINISH = PATH + "Gardien.png"
 
-needle_object = path + "aiguille.png"
-plastic_tube_object = path + "tube_plastique.png"
-ether_object = path + "ether.png"
-syringe_object = path + "seringue.png"
-dead_player = path + "dead_player.png"
+NEEDLE_OBJECT = PATH + "aiguille.png"
+PLASTIC_TUBE_OBJECT = PATH + "tube_plastique.png"
+ETHER_OBJECT = PATH + "ether.png"
+SYRINGE_OBJECT = PATH + "seringue.png"
+DEAD_PLAYER = PATH + "dead_player.png"
 
 # Colors
 BLACK = (0, 0, 0)
