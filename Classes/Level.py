@@ -36,8 +36,8 @@ class Level():
     # Display level with generate structure list
     def display_level(self, screen, list_ennemy):
         # Loading images (walls, start and finish)
-        wall = pygame.image.load(image_wall).convert()
-        player = pygame.image.load(image_player).convert_alpha()
+        wall = pygame.image.load(IMAGE_WALL).convert()
+        player = pygame.image.load(IMAGE_PLAYER).convert_alpha()
         # Read level list
         num_line = 0
         for line in self.structure:
@@ -45,8 +45,8 @@ class Level():
             num_case = 0
             for sprite in line:
                 # Calcul reel position in pixels
-                x = num_case*sprite_size
-                y = num_line*sprite_size
+                x = num_case*SPRITE_SIZE
+                y = num_line*SPRITE_SIZE
                 if sprite == 'm':          # m = wall
                     screen.blit(wall, (x, y))
                 elif sprite == 'd':        # d = start

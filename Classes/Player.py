@@ -20,8 +20,8 @@ class Player(pygame.sprite.Sprite):
         self.case_y = 0
         self.x = 0
         self.y = 0
-        self.Rect_position_old = pygame.Rect(self.x, self.y, player_size,
-                                             player_size)
+        self.Rect_position_old = pygame.Rect(self.x, self.y, PLAYER_SIZE,
+                                             PLAYER_SIZE)
         # Default direction
         self.direction = self.right
         self.nb_item = 0
@@ -36,9 +36,9 @@ class Player(pygame.sprite.Sprite):
 
         if direction == 'right':
             # Screen limit
-            if self.case_x < (numbers_sprite_side - 1):
+            if self.case_x < (NUMBERS_SPRITE_SIZE - 1):
                 game_over = self.contact_test_ennemy(list_ennemy,
-                                                     self.x+sprite_size,
+                                                     self.x+SPRITE_SIZE,
                                                      self.y, screen)
                 if game_over:
                     return True
@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
                     self.Rect_position_old.left = self.x
                     self.Rect_position_old.top = self.y
                     # Calcul of the reel position in pixel
-                    self.x = self.case_x * sprite_size
+                    self.x = self.case_x * SPRITE_SIZE
             # Image of the player
             self.image = pygame.image.load(self.right).convert_alpha()
 
@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
         if direction == 'left':
             if self.case_x > 0:
                 game_over = self.contact_test_ennemy(list_ennemy,
-                                                     self.x-sprite_size,
+                                                     self.x-SPRITE_SIZE,
                                                      self.y, screen)
                 if game_over:
                     return True
@@ -70,7 +70,7 @@ class Player(pygame.sprite.Sprite):
                     self.case_x -= 1
                     self.Rect_position_old.left = self.x
                     self.Rect_position_old.top = self.y
-                    self.x = self.case_x * sprite_size
+                    self.x = self.case_x * SPRITE_SIZE
             self.image = pygame.image.load(self.left).convert_alpha()
 
     # Move Up
@@ -81,7 +81,7 @@ class Player(pygame.sprite.Sprite):
         if direction == 'up':
             if self.case_y > 0:
                 game_over = self.contact_test_ennemy(list_ennemy, self.x,
-                                                     self.y-sprite_size,
+                                                     self.y-SPRITE_SIZE,
                                                      screen)
                 if game_over:
                     return True
@@ -89,7 +89,7 @@ class Player(pygame.sprite.Sprite):
                     self.case_y -= 1
                     self.Rect_position_old.left = self.x
                     self.Rect_position_old.top = self.y
-                    self.y = self.case_y * sprite_size
+                    self.y = self.case_y * SPRITE_SIZE
             self.image = pygame.image.load(self.up).convert_alpha()
 
     # Move Down
@@ -98,9 +98,9 @@ class Player(pygame.sprite.Sprite):
         finish = list_ennemy[0]
 
         if direction == 'down':
-            if self.case_y < (numbers_sprite_side - 1):
+            if self.case_y < (NUMBERS_SPRITE_SIZE - 1):
                 game_over = self.contact_test_ennemy(list_ennemy, self.x,
-                                                     self.y+sprite_size,
+                                                     self.y+SPRITE_SIZE,
                                                      screen)
                 if game_over:
                     return True
@@ -108,7 +108,7 @@ class Player(pygame.sprite.Sprite):
                     self.case_y += 1
                     self.Rect_position_old.left = self.x
                     self.Rect_position_old.top = self.y
-                    self.y = self.case_y * sprite_size
+                    self.y = self.case_y * SPRITE_SIZE
             self.image = pygame.image.load(self.down).convert_alpha()
         return False
 
@@ -123,9 +123,9 @@ class Player(pygame.sprite.Sprite):
                 item.y = -1
                 if self.nb_item == 3:
                     self.nb_item += 1
-                    screen.blit(wall, (11*sprite_size, 0))
-                    screen.blit(wall, (12*sprite_size, 0))
-                    screen.blit(wall, (13*sprite_size, 0))
+                    screen.blit(wall, (11*SPRITE_SIZE, 0))
+                    screen.blit(wall, (12*SPRITE_SIZE, 0))
+                    screen.blit(wall, (13*SPRITE_SIZE, 0))
                     screen.blit(syringe.image, (syringe.x_display,
                                                 syringe.y_display))
                 else:

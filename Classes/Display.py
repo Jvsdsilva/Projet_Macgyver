@@ -13,8 +13,8 @@ class Display(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         # Load images
-        self.image_display = pygame.image.load(image_player)
-        self.screen = pygame.display.set_mode((screen_side, screen_side))
+        self.image_display = pygame.image.load(IMAGE_PLAYER)
+        self.screen = pygame.display.set_mode((SCREEN_SIDE, SCREEN_SIDE))
         # Set file
         file = 'Labyrinth'
         # Instatiation labyrinth
@@ -23,14 +23,14 @@ class Display(pygame.sprite.Sprite):
         self.list_items = []
         self.list_ennemy = []
         self.list_items = []
-        self.syringe = Object.Object(syringe_object, 14*sprite_size, 0)
+        self.syringe = Object.Object(SYRINGE_OBJECT, 14*SPRITE_SIZE, 0)
         # Initiation pygame
         self.init_pygame()
         # set objects
         self.init_objects()
         # Create player
-        self.player1 = Player.Player(image_player, image_player, image_player,
-                                     image_player, self.level)
+        self.player1 = Player.Player(IMAGE_PLAYER, IMAGE_PLAYER, IMAGE_PLAYER,
+                                     IMAGE_PLAYER, self.level)
         # Create ennemy
         self.init_ennemy()
         # Display level and objects
@@ -50,9 +50,9 @@ class Display(pygame.sprite.Sprite):
         # Call this function so the Pygame library can initialize itself
         pygame.init()
         # Create the surface of (width, height), and its window.
-        self.screen = pygame.display.set_mode((screen_side, screen_side))
+        self.screen = pygame.display.set_mode((SCREEN_SIDE, SCREEN_SIDE))
         # Set the title of the window
-        pygame.display.set_caption(screen_titre)
+        pygame.display.set_caption(SCREEN_TITRE)
 
     # quit pygame
     def quit_pygame(self):
@@ -80,20 +80,20 @@ class Display(pygame.sprite.Sprite):
 
     # Create player
     def display_player(self):
-        player1 = Player.Player(image_player, image_player, image_player,
-                                image_player, self.level)
+        player1 = Player.Player(IMAGE_PLAYER, IMAGE_PLAYER, IMAGE_PLAYER,
+                                IMAGE_PLAYER, self.level)
 
     # Create ennemy
     def init_ennemy(self):
-        ennemy = Player.Player(image_finish, image_finish, image_finish,
-                               image_finish, self.level)
+        ennemy = Player.Player(IMAGE_FINISH, IMAGE_FINISH, IMAGE_FINISH,
+                               IMAGE_FINISH, self.level)
         self.list_ennemy.append(ennemy)
 
     def init_objects(self):
         # Instatiation objects
-        plastic_tube = Object.Object(plastic_tube_object, 13*sprite_size, 0)
-        ether = Object.Object(ether_object, 12*sprite_size, 0)
-        needle = Object.Object(needle_object, 11*sprite_size, 0)
+        plastic_tube = Object.Object(PLASTIC_TUBE_OBJECT, 13*SPRITE_SIZE, 0)
+        ether = Object.Object(ETHER_OBJECT, 12*SPRITE_SIZE, 0)
+        needle = Object.Object(NEEDLE_OBJECT, 11*SPRITE_SIZE, 0)
 
         # Add objects to list
         self.list_items.append(needle)
@@ -102,9 +102,9 @@ class Display(pygame.sprite.Sprite):
 
     def display_objects(self):
         # Set image object
-        self.list_items[0].image = self.load_image(needle_object)
-        self.list_items[1].image = self.load_image(ether_object)
-        self.list_items[2].image = self.load_image(plastic_tube_object)
+        self.list_items[0].image = self.load_image(NEEDLE_OBJECT)
+        self.list_items[1].image = self.load_image(ETHER_OBJECT)
+        self.list_items[2].image = self.load_image(PLASTIC_TUBE_OBJECT)
 
         # Set de position of objects
         self.list_items[0].set_item(self.player1, self.list_items, self.level)

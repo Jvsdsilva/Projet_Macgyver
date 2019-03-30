@@ -38,6 +38,6 @@ class Object(pygame.sprite.Sprite):
                 x = random.randrange(1, 15)
                 y = random.randrange(1, 15)
         # Position of random objects
-        self.x = x*sprite_size
-        self.y = y*sprite_size
+        self.x = x*SPRITE_SIZE
+        self.y = y*SPRITE_SIZE
 

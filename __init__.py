@@ -1,7 +1,5 @@
 # !/usr/bin/python3
 # -*- coding: Utf-8 -*
-
-import random
 from Classes import Display
 
 
@@ -18,6 +16,6 @@ def main():
 
     pygame.quit_pygame()
 
+
 if __name__ == "__main__":
     main()
-
